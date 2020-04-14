@@ -4,30 +4,22 @@ import useImage from 'use-image';
 import TshirtView from './tshirtcolor'
 
 
-export default function Designer({ tshirt, tshirtOnChange }) {
-    const [selected, setSelected] = React.useState(false);
+export default function Designer({ tshirt, elStage, tshirtOnChange, selected, setSelected, checkDeselect }) {
     const [pageLoaded, setPageLoaded] = React.useState(false)
-    const elStage = React.useRef();
-
-    const checkDeselect = e => {
-        // deselect when clicked on empty area
-        const clickedOnEmpty = e.target === e.target.getStage();
-        if (clickedOnEmpty) {
-            setSelected(false);
-        }
-    };
 
     React.useEffect(() => {
         setPageLoaded(true)
+        console.log('loaded')
     }, [])
 
     return (
-        <div ref={elStage} className="w-full flex justify-center items-center">
+        <div id="myDesign" ref={elStage} className="w-full flex relative justify-center items-center">
             <Stage className="absolute"
                 onMouseDown={checkDeselect}
                 onTouchStart={checkDeselect}
                 width={pageLoaded ? Math.round(40 * elStage.current.clientWidth / 100) : 0}
-                height={pageLoaded ? Math.round(58 * elStage.current.clientWidth / 100) : 0}>
+                height={pageLoaded ? Math.round(58 * elStage.current.clientWidth / 100) : 0}
+            >
                 <Layer>
                     <DesignView
                         isSelected={selected}
@@ -35,9 +27,7 @@ export default function Designer({ tshirt, tshirtOnChange }) {
                         tshirt={tshirt.direction === 'front' ? tshirt.designs.front : tshirt.designs.back}
                         onSelect={() => {
                             setSelected(true);
-                            console.log('selected')
                         }}
-                        // design={tshirt.direction === 'front' ? tshirt.designs.front.asset : tshirt.designs.back.asset}
                         onChange={tshirtOnChange}
                         width={pageLoaded ? 50 * (Math.round(40 * elStage.current.clientWidth / 100)) / 100 : 0}
                     />
@@ -50,8 +40,7 @@ export default function Designer({ tshirt, tshirtOnChange }) {
 
 
 const DesignView = ({ isSelected, onSelect, tshirt, onChange, data }) => {
-    // const [positions, setPosition] = React.useState(t)
-    const [image] = useImage(tshirt.asset);
+    const [image] = useImage(tshirt.preview, 'Anonymous');
     const shapeRef = React.useRef();
     const trRef = React.useRef();
 

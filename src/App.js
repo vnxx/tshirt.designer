@@ -34,43 +34,27 @@ const initial = {
 
 function App() {
   const [tshirt, setTshirt] = React.useState(initial);
+  const [selected, setSelected] = React.useState(false);
+  const elStage = React.useRef();
 
   React.useEffect(() => {
-    console.log(tshirt)
+    // console.log(tshirt)
   }, [tshirt])
 
-  // function tshirtOnChange({ isDragging, x, y, width, height }) {
-  //   setTshirt({
-  //     ...tshirt,
-  //     designs: {
-  //       ...tshirt.designs,
-  //       [tshirt.direction]: {
-  //         isDragging: isDragging,
-  //         x: x,
-  //         y: y,
-  //         width: width,
-  //         height: height
-  //       }
-  //     }
-  //   })
-  // }
-
-  // React.useEffect(() => {
-  //   const img = new window.Image();
-  //   img.crossOrigin = "Anonymous";
-  //   img.src = "https://images.unsplash.com/photo-1531804055935-76f44d7c3621?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-  //   setImage(img);
-  //   setPageLoaded(true)
-  //   console.log(elStage.current.clientWidth)
-  //   console.log(elStage.current.offsetHeight)
-  // }, []);
+  const checkDeselect = e => {
+    // deselect when clicked on empty area
+    const clickedOnEmpty = e.target === e.target.getStage();
+    if (clickedOnEmpty) {
+      setSelected(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex justify-center items-center">
       <div className="container w-4/5 flex justify-center items-center">
         <div className="flex w-full">
-          <Designer tshirt={tshirt} tshirtOnChange={setTshirt} />
-          <Editor tshirt={tshirt} tshirtOnChange={setTshirt} />
+          <Designer selected={selected} setSelected={setSelected} checkDeselect={checkDeselect} elStage={elStage} tshirt={tshirt} tshirtOnChange={setTshirt} />
+          <Editor selected={selected} setSelected={setSelected} elStage={elStage} tshirt={tshirt} tshirtOnChange={setTshirt} />
         </div>
       </div>
     </div>
