@@ -9,7 +9,7 @@ export default function Designer({ tshirt, elStage, tshirtOnChange, selected, se
 
     React.useEffect(() => {
         setPageLoaded(true)
-        console.log('loaded')
+        // console.log('designer loaded')
     }, [])
 
     return (

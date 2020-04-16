@@ -1,0 +1,19 @@
+{
+    "name": "Tshirt Designer",
+    "short_name": "TshirtDesigner",
+    "icons": [
+        {
+            "src": "/icons/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/android-chrome-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#2A82F0",
+    "background_color": "#2A82F0",
+    "display": "standalone"
+}

@@ -33,6 +33,7 @@ const initial = {
 }
 
 function App() {
+  const [appLoaded, setAppLoaded] = React.useState(false);
   const [tshirt, setTshirt] = React.useState(initial);
   const [selected, setSelected] = React.useState(false);
   const [modal, setModal] = React.useState({
@@ -60,20 +61,34 @@ function App() {
     })
   }
 
+  React.useEffect(() => {
+    if (!appLoaded) {
+      // console.log('app loaded')
+      setAppLoaded(true)
+      let fisrtLoad = document.getElementById("fisrtLoad")
+      fisrtLoad.classList.add("fade-out")
+      setTimeout(() => {
+        fisrtLoad.style.display = "none"
+      }, 500)
+    }
+  }, [appLoaded, setAppLoaded])
+
   return (
-    <div className="min-h-screen block lg:flex justify-center items-center">
-      {modal.isOpen && (
-        <div className="modal z-10 absolute min-h-screen w-full flex justify-center items-center">
-          <div className="z-20 w-1/3 container bg-white p-5 rounded-sm">
-            <p className="mb-5">{modal.message}</p>
-            <button onClick={() => closeModal()} className="bg-primary w-full rounded-sm text-white p-2 outline-none">ok</button>
+    <React.Fragment>
+      <div className="min-h-screen block lg:flex justify-center items-center" >
+        {modal.isOpen && (
+          <div className="modal z-10 absolute min-h-screen w-full flex justify-center items-center">
+            <div className="z-20 w-1/3 container bg-white p-5 rounded-sm">
+              <p className="mb-5">{modal.message}</p>
+              <button onClick={() => closeModal()} className="bg-primary w-full rounded-sm text-white p-2 outline-none">ok</button>
+            </div>
+            <div onClick={() => closeModal()} className="bg-modal min-h-full absolute w-full"></div>
           </div>
-          <div onClick={() => closeModal()} className="bg-modal min-h-full absolute w-full"></div>
-        </div>
-      )}
-      <Designer selected={selected} setSelected={setSelected} checkDeselect={checkDeselect} elStage={elStage} tshirt={tshirt} tshirtOnChange={setTshirt} />
-      <Editor setModal={setModal} selected={selected} setSelected={setSelected} elStage={elStage} tshirt={tshirt} tshirtOnChange={setTshirt} />
-    </div>
+        )}
+        < Designer selected={selected} setSelected={setSelected} checkDeselect={checkDeselect} elStage={elStage} tshirt={tshirt} tshirtOnChange={setTshirt} />
+        <Editor setModal={setModal} selected={selected} setSelected={setSelected} elStage={elStage} tshirt={tshirt} tshirtOnChange={setTshirt} />
+      </div>
+    </React.Fragment>
   );
 }
 

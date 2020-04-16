@@ -169,6 +169,10 @@ export default function Editor({ tshirt, elStage, tshirtOnChange, setSelected, s
 
     }, [dlImage, setDLimage, selected])
 
+    // React.useEffect(() => {
+    //     console.log('editor loaded')
+    // }, [])
+
     return (
         <div onClick={() => setSelected(false)} className="w-full py-10 lg:py-0 min-h-0 lg:min-h-screen flex items-center justify-center">
             <div className="w-full px-5 lg:px-10">
