@@ -13,27 +13,29 @@ export default function Designer({ tshirt, elStage, tshirtOnChange, selected, se
     }, [])
 
     return (
-        <div id="myDesign" ref={elStage} className="w-full flex relative justify-center items-center">
-            <Stage className="absolute"
-                onMouseDown={checkDeselect}
-                onTouchStart={checkDeselect}
-                width={pageLoaded ? Math.round(40 * elStage.current.clientWidth / 100) : 0}
-                height={pageLoaded ? Math.round(58 * elStage.current.clientWidth / 100) : 0}
-            >
-                <Layer>
-                    <DesignView
-                        isSelected={selected}
-                        data={tshirt}
-                        tshirt={tshirt.direction === 'front' ? tshirt.designs.front : tshirt.designs.back}
-                        onSelect={() => {
-                            setSelected(true);
-                        }}
-                        onChange={tshirtOnChange}
-                        width={pageLoaded ? 50 * (Math.round(40 * elStage.current.clientWidth / 100)) / 100 : 0}
-                    />
-                </Layer>
-            </Stage>
-            <TshirtView direction={tshirt.direction} color={tshirt.color} />
+        <div className="w-full bg-primary py-10 lg:py-0 flex min-h-0 lg:min-h-screen relative justify-center items-center">
+            <div id="myDesign" ref={elStage} className="relative p-0 lg:p-10 flex justify-center items-center">
+                <Stage className="absolute"
+                    onMouseDown={checkDeselect}
+                    onTouchStart={checkDeselect}
+                    width={pageLoaded ? Math.round(40 * elStage.current.clientWidth / 100) : 0}
+                    height={pageLoaded ? Math.round(58 * elStage.current.clientWidth / 100) : 0}
+                >
+                    <Layer>
+                        <DesignView
+                            isSelected={selected}
+                            data={tshirt}
+                            tshirt={tshirt.direction === 'front' ? tshirt.designs.front : tshirt.designs.back}
+                            onSelect={() => {
+                                setSelected(true);
+                            }}
+                            onChange={tshirtOnChange}
+                            width={pageLoaded ? 50 * (Math.round(40 * elStage.current.clientWidth / 100)) / 100 : 0}
+                        />
+                    </Layer>
+                </Stage>
+                <TshirtView direction={tshirt.direction} color={tshirt.color} />
+            </div>
         </div>
     )
 }
