@@ -13,7 +13,7 @@ export default function Designer({ tshirt, elStage, tshirtOnChange, selected, se
     }, [])
 
     return (
-        <div className="w-full bg-primary py-10 lg:py-0 flex min-h-0 lg:min-h-screen relative justify-center items-center">
+        <div className="w-full bg-primary py-10 lg:py-0 flex min-h-0 lg:min-h-screen justify-center items-center">
             <div id="myDesign" ref={elStage} className="relative p-0 lg:p-10 flex justify-center items-center">
                 <Stage className="absolute"
                     onMouseDown={checkDeselect}

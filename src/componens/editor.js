@@ -144,13 +144,26 @@ export default function Editor({ tshirt, elStage, tshirtOnChange, setSelected, s
         }
 
         function saveImage() {
-            const element = document.getElementById("myDesign")
+            let element = document.getElementById("myDesign")
+            const windowW = window.innerWidth
+            if (windowW < 1024) {
+                element.style.position = "fixed"
+                element.style.zIndex = 999
+                element.style.left = 0
+            }
+
             html2canvas(element, {
                 allowTaint: true,
                 removeContainer: false,
                 backgroundColor: null
             }).then(canvas => {
+                if (windowW < 1024) {
+                    element.style.position = null
+                    element.style.zIndex = null
+                    element.style.left = null
+                }
                 downloadURI(canvas.toDataURL('image/png'), 'tes')
+                // document.body.appendChild(canvas);
             })
         }
 
