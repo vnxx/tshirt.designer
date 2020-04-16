@@ -79,7 +79,7 @@ export default function Editor({ tshirt, elStage, tshirtOnChange, setSelected, s
 
             if (originalWidth >= canvas) {
                 const maxWidth = canvas
-                const maxHeight = Math.round(58 * elStage.current.clientWidth / 100)
+                const maxHeight = Math.round(55 * elStage.current.clientWidth / 100)
                 var ratio = 0;  // Used for aspect ratio
                 var width = originalWidth;    // Current image width
                 var height = originalHeight;  // Current image height

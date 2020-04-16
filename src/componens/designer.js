@@ -19,7 +19,7 @@ export default function Designer({ tshirt, elStage, tshirtOnChange, selected, se
                     onMouseDown={checkDeselect}
                     onTouchStart={checkDeselect}
                     width={pageLoaded ? Math.round(40 * elStage.current.clientWidth / 100) : 0}
-                    height={pageLoaded ? Math.round(58 * elStage.current.clientWidth / 100) : 0}
+                    height={pageLoaded ? Math.round(55 * elStage.current.clientWidth / 100) : 0}
                 >
                     <Layer>
                         <DesignView
