@@ -4,7 +4,10 @@ import white_back from '../assets/tshirt/white/back.png'
 import black_front from '../assets/tshirt/black/front.png'
 import black_back from '../assets/tshirt/black/back.png'
 
+export const tshirts = [white_front, white_back, black_front, black_back]
+
 export default function TshirtView({ color, direction }) {
+
     switch (color) {
         case 'black':
             if (direction === 'front') {

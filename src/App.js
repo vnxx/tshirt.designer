@@ -1,6 +1,7 @@
 import React from 'react';
 import Designer from './componens/designer'
 import Editor from './componens/editor'
+import { tshirts } from './componens/tshirtcolor'
 
 const initial = {
   direction: 'front',
@@ -42,9 +43,9 @@ function App() {
   })
   const elStage = React.useRef();
 
-  React.useEffect(() => {
-    // console.log(tshirt)
-  }, [tshirt])
+  // React.useEffect(() => {
+  //   // console.log(tshirt)
+  // }, [])
 
   const checkDeselect = e => {
     // deselect when clicked on empty area
@@ -62,14 +63,26 @@ function App() {
   }
 
   React.useEffect(() => {
+
+  }, [])
+
+  React.useEffect(() => {
     if (!appLoaded) {
-      // console.log('app loaded')
-      setAppLoaded(true)
-      let fisrtLoad = document.getElementById("fisrtLoad")
-      fisrtLoad.classList.add("fade-out")
-      setTimeout(() => {
-        fisrtLoad.style.display = "none"
-      }, 500)
+      // preload images
+      tshirts.forEach((pic) => {
+        const image = new Image()
+        image.src = pic
+        image.onload = () => {
+          // hide loading when images loaded
+          // console.log('image loaded')
+          setAppLoaded(true)
+          let fisrtLoad = document.getElementById("fisrtLoad")
+          fisrtLoad.classList.add("fade-out")
+          setTimeout(() => {
+            fisrtLoad.style.display = "none"
+          }, 500)
+        }
+      })
     }
   }, [appLoaded, setAppLoaded])
 
