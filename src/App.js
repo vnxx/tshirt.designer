@@ -69,20 +69,23 @@ function App() {
   React.useEffect(() => {
     if (!appLoaded) {
       // preload images
-      tshirts.forEach((pic) => {
+      for (let i = 0; i < tshirts.length; i++) {
+        const pic = tshirts[i];
         const image = new Image()
         image.src = pic
         image.onload = () => {
-          // hide loading when images loaded
-          // console.log('image loaded')
-          setAppLoaded(true)
-          let fisrtLoad = document.getElementById("fisrtLoad")
-          fisrtLoad.classList.add("fade-out")
-          setTimeout(() => {
-            fisrtLoad.style.display = "none"
-          }, 500)
+          // hide loading when the last image has been loaded
+          if (i === (tshirts.length - 1)) {
+            setAppLoaded(true)
+            let fisrtLoad = document.getElementById("fisrtLoad")
+            fisrtLoad.classList.add("fade-out")
+            setTimeout(() => {
+              fisrtLoad.style.display = "none"
+            }, 500)
+          }
         }
-      })
+
+      }
     }
   }, [appLoaded, setAppLoaded])
 
