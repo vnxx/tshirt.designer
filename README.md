@@ -1,5 +1,7 @@
 # [TshirtDesigner](https://tshirtdesigner.bykevin.work/)
-My client wants to make a website that the users can upload their design on a T-shirt and the website will sell those t-shirts such as [Teespring](https://teespring.com/). So because of that, i decided to build a T-shirt designer that I'll implement on the website.
+> Hi, I have created a more comprehensive version of this. You can check out the demo [https://tshirt-designer-demo.bykevin.work/](https://tshirt-designer-demo.bykevin.work/). If you're interested, you can contact me via email [adam@bykevin.work](mailto:adam@bykevin.work?subject=).
+
+My client wants to create a website where users can upload their designs onto T-shirts, and the website will sell those T-shirts, similar to [Teespring](https://teespring.com/). Therefore, I have decided to build a T-shirt designer that I will implement on the website.
 
 ## 📚Stack
 * [**ReactJs**](https://reactjs.org/)
